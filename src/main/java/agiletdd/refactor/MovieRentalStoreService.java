@@ -7,9 +7,9 @@ public class MovieRentalStoreService {
 
     public RentalTicket rentMovies(Customer auxCus, List<String> mo, int d) {
         RentalTicket auxti = new RentalTicket();
-        int auxTotal = 0;
-        int auxBonus = 0;
-        List<String> auxMovies = new ArrayList<>();
+        int t = 0;
+        int b = 0;
+        List<String> m = new ArrayList<>();
 
         int extra = 0;
         System.out.println("paso 1");
@@ -27,19 +27,19 @@ public class MovieRentalStoreService {
                 System.out.println("paso 3.1: " + i);
 
                 if (mo.get(i) == "Titanic") {
-                    auxTotal += 10 * d;   // el precio de las peliculas normales es de 10 al dia.
+                    t += 10 * d;   // el precio de las peliculas normales es de 10 al dia.
                 } else if (mo.get(i) == "Gladiator") {
-                    auxTotal += 10 * d;
+                    t += 10 * d;
                 } else if (mo.get(i) == "La La Land") {
-                    auxTotal += 20 * d; // el precio de las peliculas nuevas es de 20 al dia.
+                    t += 20 * d; // el precio de las peliculas nuevas es de 20 al dia.
                 } else if (mo.get(i) == "Moonlight") {
-                    auxTotal += 20 * d;
+                    t += 20 * d;
                 } else if (mo.get(i) == "Frozen") {
-                    auxTotal += 5 * d; // el precio de las peliculas para niños es de 5 al dia.
+                    t += 5 * d; // el precio de las peliculas para niños es de 5 al dia.
                 } else if (mo.get(i) == "Toy Story") {
-                    auxTotal += 5 * d;
+                    t += 5 * d;
                 }
-                System.out.println("paso 3.1: " + auxTotal + ", " + auxBonus);
+                System.out.println("paso 3.1: " + t + ", " + b);
             }
         } else {
             System.out.println("el usuario es si es premium");
@@ -47,33 +47,33 @@ public class MovieRentalStoreService {
             for (int i = 0; i < mo.size(); i++) {
 
                 if (mo.get(i) == "Titanic") {
-                    auxTotal += 8 * d;   // 2€ de descuento si es premium en peliculas normales
-                    auxBonus += 1;
+                    t += 8 * d;   // 2€ de descuento si es premium en peliculas normales
+                    b += 1;
                 } else if (mo.get(i) == "Gladiator") {
-                    auxTotal += 8 * d;
-                    auxBonus += 1;
+                    t += 8 * d;
+                    b += 1;
                 } else if (mo.get(i) == "La La Land") {
-                    auxTotal += 15 * d; // 5€ de descuento si es premium en peliculas nuevas
-                    auxBonus += 5;
+                    t += 15 * d; // 5€ de descuento si es premium en peliculas nuevas
+                    b += 5;
                 } else if (mo.get(i) == "Moonlight") {
-                    auxTotal += 15 * d;
-                    auxBonus += 5;
+                    t += 15 * d;
+                    b += 5;
                 } else if (mo.get(i) == "Frozen") {
-                    auxTotal += 4 * d; // 5€ de descuento si es premium en peliculas para niños
-                    auxBonus += 2;
+                    t += 4 * d; // 5€ de descuento si es premium en peliculas para niños
+                    b += 2;
                 } else if (mo.get(i) == "Toy Story") {
-                    auxTotal += 4 * d;
-                    auxBonus += 5;
+                    t += 4 * d;
+                    b += 5;
                 }
-                System.out.println("paso 3.2: " + auxTotal + ", " + auxBonus);
+                System.out.println("paso 3.2: " + t + ", " + b);
             }
         }
 
         // Añado un extra si el cliente tenia peliculas sin devolver y le quito el bonus si es premium
-        auxTotal += extra;
+        t += extra;
         if (auxCus.getPremium() == 1) {
             System.out.println("le quito el bonus");
-            auxBonus = 0;
+            b = 0;
         }
 
         // defino el cliente
@@ -81,11 +81,11 @@ public class MovieRentalStoreService {
         // defino las peliculas
         auxti.setMovies(mo);
         // defino el precio total
-        int auxTotal2 = auxBonus + auxCus.getTotal();
-        auxti.setTotal(auxTotal);
+        int auxTotal2 = b + auxCus.getTotal();
+        auxti.setTotal(t);
         // defino el bonus total del cliente
-        int auxBonus2 = auxBonus + auxCus.getBonus();
-        auxCus.setBonus(auxBonus);
+        int auxBonus2 = b + auxCus.getBonus();
+        auxCus.setBonus(b);
         // defino las peliculas del cliente
         for (int i = 0; i < mo.size(); i++) {
             auxCus.getMovies().add(mo.get(i));
