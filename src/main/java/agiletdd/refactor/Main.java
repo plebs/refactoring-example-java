@@ -28,7 +28,7 @@ public class Main {
 
         System.out.println("=========================================");
         System.out.println("=========================================");
-        System.out.println(mike.getName() + " has rented these movies: " + mike.getMovies() + " for " + ticket.getTotal()+"€");
+        System.out.println(mike.getName() + " has rented these movies: " + mike.getMovies() + " for " + ticket.getTotal() + "€");
         System.out.println("=========================================");
         System.out.println("=========================================");
     }
