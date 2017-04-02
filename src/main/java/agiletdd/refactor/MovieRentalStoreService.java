@@ -71,7 +71,7 @@ public class MovieRentalStoreService {
 
         // Añado un extra si el cliente tenia peliculas sin devolver y le quito el bonus si es premium
         t += extra;
-        if (auxCus.getPremium() == 1) {
+        if (auxCus.getPremium() == 1 && extra > 0) {
             System.out.println("le quito el bonus");
             b = 0;
         }
